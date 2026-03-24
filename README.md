@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/preethampm/Free/main/public/votu_logo.svg" alt="Votu logo" width="320"/>
+  <img src="https://raw.githubusercontent.com/preethampm/Free/main/public/votu_logo.svg" alt="Votu logo" width="560"/>
 </p>
 
 <h1 align="center">votu</h1>
