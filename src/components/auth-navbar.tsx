@@ -21,8 +21,8 @@ export function AuthNavbar() {
           <Image
             src="/votu_logo.svg"
             alt="votu"
-            width={90}
-            height={28}
+            width={110}
+            height={35}
             priority
             style={{ height: 'auto' }}
           />

@@ -26,7 +26,7 @@ function LoginContent() {
       <header className="border-b border-gray-100">
         <div className="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
           <Link href="/">
-            <Image src="/votu_logo.svg" alt="votu" width={190} height={60} priority style={{ height: 'auto' }} />
+            <Image src="/votu_logo.svg" alt="votu" width={220} height={70} priority style={{ height: 'auto' }} />
           </Link>
         </div>
       </header>
