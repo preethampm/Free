@@ -11,18 +11,12 @@ export default function Home() {
           <Link href="/">
             <Image src="/votu_logo.svg" alt="votu" width={190} height={60} priority style={{ height: 'auto' }} />
           </Link>
-          <div className="flex items-center gap-4">
-            <Link
-              href="/login"
-              className="text-sm text-gray-500 hover:text-gray-900 transition-colors"
-            >
-              Log in
-            </Link>
+          <div className="flex items-center">
             <Link
               href="/login"
               className="text-sm font-medium bg-[#1D9E75] text-white px-5 py-2.5 rounded-full hover:bg-[#0F6E56] transition-all active:scale-[0.98]"
             >
-              Sign up free
+              Log in
             </Link>
           </div>
         </div>

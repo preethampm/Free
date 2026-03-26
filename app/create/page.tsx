@@ -6,6 +6,7 @@ import { createClient } from '@/src/lib/supabase/client'
 import { generateSlug, generateItemSlug } from '@/src/lib/slug'
 import { Button } from '@/src/components/ui/button'
 import { StepIndicator } from '@/src/components/ui/step-indicator'
+import { AuthNavbar } from '@/src/components/auth-navbar'
 
 interface ItemForm {
   name: string
@@ -54,6 +55,9 @@ export default function CreatePage() {
   const step1Valid = eventName.trim().length > 0
   const step2Valid = items.every((i) => i.name.trim().length > 0)
   const step3Valid = criteria.every((c) => c.label.trim().length > 0)
+
+  const inputClass = 'w-full border border-gray-200 rounded-xl px-4 py-3 text-base focus:outline-none focus:border-[#1D9E75] focus:ring-1 focus:ring-[#1D9E75]/20 transition-all'
+  const inputClassSm = 'w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:border-[#1D9E75] focus:ring-1 focus:ring-[#1D9E75]/20 transition-all'
 
   async function handleCreate() {
     setSubmitting(true)
@@ -111,28 +115,29 @@ export default function CreatePage() {
   }
 
   return (
-    <div className="min-h-screen px-4 py-6">
-      <div className="max-w-md mx-auto">
+    <div className="min-h-screen bg-gradient-to-b from-[#E1F5EE]/30 to-white">
+      <AuthNavbar />
+      <div className="max-w-md mx-auto px-4 sm:px-6 py-8">
         <StepIndicator current={step} total={4} />
 
         {/* Step 1: Event Name */}
         {step === 1 && (
           <div>
-            <h1 className="text-xl font-bold mb-1">Create an event</h1>
-            <p className="text-gray-500 text-sm mb-6">
+            <h1 className="text-2xl font-bold text-[#04342C] mb-1">Create an event</h1>
+            <p className="text-gray-500 text-sm mb-8">
               Give your feedback event a name
             </p>
 
-            <label className="block text-sm font-medium mb-1.5">Event name</label>
+            <label className="block text-sm font-medium text-[#04342C] mb-2">Event name</label>
             <input
               type="text"
               value={eventName}
               onChange={(e) => setEventName(e.target.value)}
               placeholder="e.g. College Fest 2026"
-              className="w-full border border-gray-300 rounded-lg px-4 py-3 text-base focus:outline-none focus:border-black mb-2"
+              className={inputClass}
             />
             {slugPreview && (
-              <p className="text-xs text-gray-400 mb-6">
+              <p className="text-xs text-gray-400 mt-2 mb-6">
                 Link: /e/{slugPreview}
               </p>
             )}
@@ -146,20 +151,22 @@ export default function CreatePage() {
         {/* Step 2: Items */}
         {step === 2 && (
           <div>
-            <h1 className="text-xl font-bold mb-1">Add items</h1>
-            <p className="text-gray-500 text-sm mb-6">
+            <h1 className="text-2xl font-bold text-[#04342C] mb-1">Add items</h1>
+            <p className="text-gray-500 text-sm mb-8">
               What will people be rating? (games, stalls, rooms, etc.)
             </p>
 
             <div className="space-y-3 mb-4">
               {items.map((item, index) => (
-                <div key={index} className="border border-gray-200 rounded-lg p-4">
+                <div key={index} className="border border-[#1D9E75]/15 rounded-2xl p-4 bg-white">
                   <div className="flex items-center justify-between mb-2">
-                    <span className="text-xs text-gray-400">Item {index + 1}</span>
+                    <span className="text-xs font-medium text-[#1D9E75] bg-[#E1F5EE] rounded-full px-2.5 py-0.5">
+                      Item {index + 1}
+                    </span>
                     {items.length > 1 && (
                       <button
                         onClick={() => removeItem(index)}
-                        className="text-xs text-gray-400 hover:text-black"
+                        className="text-xs text-gray-400 hover:text-red-500 transition-all"
                       >
                         Remove
                       </button>
@@ -174,7 +181,7 @@ export default function CreatePage() {
                       setItems(updated)
                     }}
                     placeholder="e.g. Game 1: Ring Toss"
-                    className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-black mb-2"
+                    className={inputClassSm + ' mb-2'}
                   />
                   <input
                     type="text"
@@ -185,7 +192,7 @@ export default function CreatePage() {
                       setItems(updated)
                     }}
                     placeholder="Description (optional)"
-                    className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-black"
+                    className={inputClassSm}
                   />
                 </div>
               ))}
@@ -193,7 +200,7 @@ export default function CreatePage() {
 
             <button
               onClick={addItem}
-              className="w-full py-2.5 text-sm font-medium border border-dashed border-gray-300 rounded-lg text-gray-500 hover:border-gray-400 hover:text-black transition-all mb-6"
+              className="w-full py-2.5 text-sm font-medium border border-dashed border-[#1D9E75]/30 rounded-xl text-[#1D9E75] hover:bg-[#E1F5EE]/50 hover:border-[#1D9E75] transition-all mb-6"
             >
               + Add item
             </button>
@@ -212,20 +219,22 @@ export default function CreatePage() {
         {/* Step 3: Criteria */}
         {step === 3 && (
           <div>
-            <h1 className="text-xl font-bold mb-1">Rating criteria</h1>
-            <p className="text-gray-500 text-sm mb-6">
+            <h1 className="text-2xl font-bold text-[#04342C] mb-1">Rating criteria</h1>
+            <p className="text-gray-500 text-sm mb-8">
               What aspects will people rate?
             </p>
 
             <div className="space-y-3 mb-4">
               {criteria.map((criterion, index) => (
-                <div key={index} className="border border-gray-200 rounded-lg p-4">
+                <div key={index} className="border border-[#1D9E75]/15 rounded-2xl p-4 bg-white">
                   <div className="flex items-center justify-between mb-2">
-                    <span className="text-xs text-gray-400">Criterion {index + 1}</span>
+                    <span className="text-xs font-medium text-[#1D9E75] bg-[#E1F5EE] rounded-full px-2.5 py-0.5">
+                      Criterion {index + 1}
+                    </span>
                     {criteria.length > 1 && (
                       <button
                         onClick={() => removeCriterion(index)}
-                        className="text-xs text-gray-400 hover:text-black"
+                        className="text-xs text-gray-400 hover:text-red-500 transition-all"
                       >
                         Remove
                       </button>
@@ -240,7 +249,7 @@ export default function CreatePage() {
                       setCriteria(updated)
                     }}
                     placeholder="e.g. How fun was it?"
-                    className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-black mb-2"
+                    className={inputClassSm + ' mb-2'}
                   />
                   <div className="flex gap-3">
                     <div className="flex-1">
@@ -254,7 +263,7 @@ export default function CreatePage() {
                           setCriteria(updated)
                         }}
                         min={1}
-                        className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-black"
+                        className={inputClassSm}
                       />
                     </div>
                     <div className="flex-1">
@@ -268,7 +277,7 @@ export default function CreatePage() {
                           setCriteria(updated)
                         }}
                         min={2}
-                        className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-black"
+                        className={inputClassSm}
                       />
                     </div>
                   </div>
@@ -278,7 +287,7 @@ export default function CreatePage() {
 
             <button
               onClick={addCriterion}
-              className="w-full py-2.5 text-sm font-medium border border-dashed border-gray-300 rounded-lg text-gray-500 hover:border-gray-400 hover:text-black transition-all mb-6"
+              className="w-full py-2.5 text-sm font-medium border border-dashed border-[#1D9E75]/30 rounded-xl text-[#1D9E75] hover:bg-[#E1F5EE]/50 hover:border-[#1D9E75] transition-all mb-6"
             >
               + Add criterion
             </button>
@@ -297,22 +306,22 @@ export default function CreatePage() {
         {/* Step 4: Review */}
         {step === 4 && (
           <div>
-            <h1 className="text-xl font-bold mb-1">Review</h1>
-            <p className="text-gray-500 text-sm mb-6">
+            <h1 className="text-2xl font-bold text-[#04342C] mb-1">Review</h1>
+            <p className="text-gray-500 text-sm mb-8">
               Confirm your event details
             </p>
 
-            <div className="space-y-4 mb-6">
-              <div className="border border-gray-200 rounded-lg p-4">
-                <p className="text-xs text-gray-400 mb-1">Event</p>
-                <p className="font-medium">{eventName}</p>
+            <div className="space-y-4 mb-8">
+              <div className="border border-[#1D9E75]/15 rounded-2xl p-5 bg-white">
+                <p className="text-xs font-medium text-[#1D9E75] mb-1.5">Event</p>
+                <p className="font-semibold text-[#04342C]">{eventName}</p>
                 <p className="text-xs text-gray-400 mt-1">/e/{slugPreview}</p>
               </div>
 
-              <div className="border border-gray-200 rounded-lg p-4">
-                <p className="text-xs text-gray-400 mb-2">Items ({items.length})</p>
+              <div className="border border-[#1D9E75]/15 rounded-2xl p-5 bg-white">
+                <p className="text-xs font-medium text-[#1D9E75] mb-2">Items ({items.length})</p>
                 {items.map((item, i) => (
-                  <p key={i} className="text-sm">
+                  <p key={i} className="text-sm text-[#04342C]">
                     {item.name}
                     {item.description && (
                       <span className="text-gray-400"> — {item.description}</span>
@@ -321,10 +330,10 @@ export default function CreatePage() {
                 ))}
               </div>
 
-              <div className="border border-gray-200 rounded-lg p-4">
-                <p className="text-xs text-gray-400 mb-2">Criteria ({criteria.length})</p>
+              <div className="border border-[#1D9E75]/15 rounded-2xl p-5 bg-white">
+                <p className="text-xs font-medium text-[#1D9E75] mb-2">Criteria ({criteria.length})</p>
                 {criteria.map((c, i) => (
-                  <p key={i} className="text-sm">
+                  <p key={i} className="text-sm text-[#04342C]">
                     {c.label} <span className="text-gray-400">({c.min_score}–{c.max_score})</span>
                   </p>
                 ))}

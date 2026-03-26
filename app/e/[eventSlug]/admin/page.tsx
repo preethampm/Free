@@ -4,6 +4,7 @@ import { useEffect, useState, useCallback } from 'react'
 import { useParams, useRouter } from 'next/navigation'
 import { createClient } from '@/src/lib/supabase/client'
 import { QRCard } from '@/src/components/qr-card'
+import { AuthNavbar } from '@/src/components/auth-navbar'
 
 interface Event {
   id: string
@@ -32,6 +33,12 @@ interface EventItem {
   name: string
   slug: string
 }
+
+const rankStyles = [
+  'bg-amber-400 text-white',       // Gold
+  'bg-gray-400 text-white',         // Silver
+  'bg-amber-600 text-white',        // Bronze
+]
 
 export default function AdminPage() {
   const { eventSlug } = useParams<{ eventSlug: string }>()
@@ -172,8 +179,17 @@ export default function AdminPage() {
 
   if (loading || !authorized) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <p className="text-gray-400">Loading...</p>
+      <div className="min-h-screen flex flex-col">
+        <AuthNavbar />
+        <div className="flex-1 flex items-center justify-center">
+          <div className="flex items-center gap-3">
+            <svg className="w-5 h-5 text-[#1D9E75] animate-spin" fill="none" viewBox="0 0 24 24">
+              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+            </svg>
+            <span className="text-sm text-gray-400">Loading results...</span>
+          </div>
+        </div>
       </div>
     )
   }
@@ -181,47 +197,49 @@ export default function AdminPage() {
   if (!event) return null
 
   return (
-    <div className="min-h-screen px-4 py-6">
-      <div className="max-w-2xl mx-auto">
+    <div className="min-h-screen bg-gradient-to-b from-[#E1F5EE]/30 to-white">
+      <AuthNavbar />
+      <div className="max-w-2xl mx-auto px-4 sm:px-6 py-8">
         {/* Header */}
-        <div className="text-center mb-6">
-          <button
-            onClick={() => router.push('/dashboard')}
-            className="text-xs text-gray-400 hover:text-black transition-all mb-2 block mx-auto"
-          >
-            &#8592; Dashboard
-          </button>
-          <h1 className="text-xl font-bold">{event.name}</h1>
-          <p className="text-sm text-gray-400 mt-1">
-            <span className="inline-block w-1.5 h-1.5 bg-[#1D9E75] rounded-full mr-1 animate-pulse" />
+        <div className="text-center mb-8">
+          <h1 className="text-2xl font-bold text-[#04342C]">{event.name}</h1>
+          <p className="text-sm text-gray-500 mt-1.5 flex items-center justify-center gap-2">
+            <span className="inline-block w-2 h-2 bg-[#1D9E75] rounded-full animate-pulse" />
             Live results
           </p>
         </div>
 
         {/* Stats */}
-        <div className="grid grid-cols-2 gap-3 mb-6">
-          <div className="border border-gray-200 rounded-lg p-4 text-center">
-            <p className="text-2xl font-bold">{completedCount}</p>
-            <p className="text-xs text-gray-400 mt-1">Completed voters</p>
+        <div className="grid grid-cols-2 gap-4 mb-8">
+          <div className="rounded-2xl p-5 text-center bg-[#E1F5EE]/60 border border-[#1D9E75]/10">
+            <p className="text-3xl font-bold text-[#04342C]">{completedCount}</p>
+            <p className="text-xs text-[#0F6E56] font-medium mt-1">Completed voters</p>
           </div>
-          <div className="border border-gray-200 rounded-lg p-4 text-center">
-            <p className="text-2xl font-bold">{totalAttendees}</p>
-            <p className="text-xs text-gray-400 mt-1">Total registered</p>
+          <div className="rounded-2xl p-5 text-center bg-white border border-[#1D9E75]/15">
+            <p className="text-3xl font-bold text-[#04342C]">{totalAttendees}</p>
+            <p className="text-xs text-gray-500 font-medium mt-1">Total registered</p>
           </div>
         </div>
 
         {/* Actions */}
-        <div className="flex gap-3 mb-6">
+        <div className="flex gap-3 mb-8">
           <button
             onClick={exportCSV}
-            className="flex-1 py-2.5 text-sm font-medium border border-gray-300 rounded-lg hover:bg-gray-50 transition-all"
+            className="flex-1 py-2.5 text-sm font-medium border border-[#1D9E75]/20 text-[#0F6E56] rounded-xl hover:bg-[#E1F5EE]/50 hover:border-[#1D9E75]/30 transition-all flex items-center justify-center gap-2"
           >
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+            </svg>
             Export CSV
           </button>
           <button
             onClick={() => setShowQR(!showQR)}
-            className="flex-1 py-2.5 text-sm font-medium border border-gray-300 rounded-lg hover:bg-gray-50 transition-all"
+            className="flex-1 py-2.5 text-sm font-medium border border-[#1D9E75]/20 text-[#0F6E56] rounded-xl hover:bg-[#E1F5EE]/50 hover:border-[#1D9E75]/30 transition-all flex items-center justify-center gap-2"
           >
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 4.875c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5A1.125 1.125 0 013.75 9.375v-4.5zM3.75 14.625c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5a1.125 1.125 0 01-1.125-1.125v-4.5zM13.5 4.875c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5A1.125 1.125 0 0113.5 9.375v-4.5z" />
+              <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 6.75h.75v.75h-.75v-.75zM6.75 16.5h.75v.75h-.75v-.75zM16.5 6.75h.75v.75h-.75v-.75zM13.5 13.5h.75v.75h-.75v-.75zM13.5 19.5h.75v.75h-.75v-.75zM19.5 13.5h.75v.75h-.75v-.75zM19.5 19.5h.75v.75h-.75v-.75zM16.5 16.5h.75v.75H16.5v-.75z" />
+            </svg>
             {showQR ? 'Hide QR codes' : 'Show QR codes'}
           </button>
         </div>
@@ -229,7 +247,7 @@ export default function AdminPage() {
         {/* QR Codes */}
         {showQR && (
           <div className="mb-8">
-            <h2 className="text-sm font-medium text-gray-500 mb-3">QR codes</h2>
+            <h2 className="text-sm font-semibold text-[#04342C] mb-4">QR codes</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {items.map((item) => (
                 <QRCard
@@ -245,27 +263,34 @@ export default function AdminPage() {
 
         {/* Leaderboard */}
         <div>
-          <h2 className="text-sm font-medium text-gray-500 mb-3">Leaderboard</h2>
-          <div className="space-y-2">
+          <h2 className="text-sm font-semibold text-[#04342C] mb-4">Leaderboard</h2>
+          <div className="space-y-3">
             {leaderboard.map((row, index) => {
               const itemCriteria = criteriaScores.filter(
                 (c) => c.item_id === row.item_id
               )
 
               return (
-                <div key={row.item_id} className="border border-gray-200 rounded-lg p-4">
+                <div
+                  key={row.item_id}
+                  className={`rounded-2xl border p-5 transition-all ${
+                    index < 3
+                      ? 'bg-[#E1F5EE]/30 border-[#1D9E75]/20'
+                      : 'bg-white border-gray-100'
+                  }`}
+                >
                   <div className="flex items-center justify-between mb-2">
                     <div className="flex items-center gap-3">
                       <span className={`
-                        w-7 h-7 rounded-full flex items-center justify-center text-xs font-medium
-                        ${index < 3 ? 'bg-[#1D9E75] text-[#E1F5EE]' : 'border border-gray-300 text-gray-500'}
+                        w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold shadow-sm
+                        ${index < 3 ? rankStyles[index] : 'border-2 border-gray-200 text-gray-400'}
                       `}>
                         {index + 1}
                       </span>
-                      <span className="font-medium text-sm">{row.item_name}</span>
+                      <span className="font-semibold text-sm text-[#04342C]">{row.item_name}</span>
                     </div>
                     <div className="text-right">
-                      <p className="font-bold">{row.average_score}</p>
+                      <p className="text-xl font-bold text-[#04342C]">{row.average_score}</p>
                       <p className="text-xs text-gray-400">
                         {row.total_votes} vote{row.total_votes !== 1 ? 's' : ''}
                       </p>
@@ -273,11 +298,11 @@ export default function AdminPage() {
                   </div>
 
                   {itemCriteria.length > 0 && (
-                    <div className="flex gap-2 flex-wrap mt-2">
+                    <div className="flex gap-2 flex-wrap mt-3">
                       {itemCriteria.map((c) => (
                         <span
                           key={c.criteria_label}
-                          className="text-xs border border-gray-200 rounded px-2 py-0.5 text-gray-500"
+                          className="text-xs bg-[#E1F5EE] text-[#0F6E56] rounded-full px-2.5 py-0.5 font-medium"
                         >
                           {c.criteria_label}: {c.avg_score}
                         </span>
@@ -289,9 +314,15 @@ export default function AdminPage() {
             })}
 
             {leaderboard.length === 0 && (
-              <div className="border border-gray-200 rounded-lg p-8 text-center">
-                <p className="text-gray-400 text-sm">
-                  No completed votes yet. Results appear when users rate all items.
+              <div className="rounded-2xl border border-[#1D9E75]/15 p-10 text-center bg-white">
+                <div className="w-14 h-14 rounded-full bg-[#E1F5EE] flex items-center justify-center mx-auto mb-4">
+                  <svg className="w-7 h-7 text-[#1D9E75]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M16.5 18.75h-9m9 0a3 3 0 013 3h-15a3 3 0 013-3m9 0v-3.375c0-.621-.503-1.125-1.125-1.125h-.871M7.5 18.75v-3.375c0-.621.504-1.125 1.125-1.125h.872m5.007 0H9.497m5.007 0a7.454 7.454 0 01-.982-3.172M9.497 14.25a7.454 7.454 0 00.981-3.172M5.25 4.236c-.982.143-1.954.317-2.916.52A6.003 6.003 0 007.73 9.728M5.25 4.236V4.5c0 2.108.966 3.99 2.48 5.228M5.25 4.236V2.721C7.456 2.41 9.71 2.25 12 2.25c2.291 0 4.545.16 6.75.47v1.516M18.75 4.236c.982.143 1.954.317 2.916.52A6.003 6.003 0 0116.27 9.728M18.75 4.236V4.5c0 2.108-.966 3.99-2.48 5.228m0 0a6.003 6.003 0 01-3.77 1.522m0 0a6.003 6.003 0 01-3.77-1.522" />
+                  </svg>
+                </div>
+                <p className="text-sm font-medium text-[#04342C] mb-1">No completed votes yet</p>
+                <p className="text-xs text-gray-400">
+                  Results appear once attendees have rated all items.
                 </p>
               </div>
             )}

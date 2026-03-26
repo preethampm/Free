@@ -35,10 +35,10 @@ function LoginContent() {
       <main className="flex-1 flex items-center justify-center px-6">
         <div className="w-full max-w-sm">
           <h1 className="text-3xl font-bold tracking-tight">
-            Sign up
+            Log in
           </h1>
           <p className="text-gray-400 mt-2 leading-relaxed">
-            Create an account to start building votu events.
+            Sign in to manage your votu events.
           </p>
 
           <button
@@ -58,16 +58,7 @@ function LoginContent() {
             Free forever. No credit card required.
           </p>
 
-          <div className="mt-10 border-t border-gray-100 pt-6">
-            <p className="text-xs text-gray-400 text-center">
-              Already have an account?{' '}
-              <Link href="/login" className="text-[#1D9E75] hover:underline">
-                Log in
-              </Link>
-            </p>
-          </div>
-
-          <div className="mt-8 text-center">
+          <div className="mt-10 border-t border-gray-100 pt-6 text-center">
             <p className="text-xs text-gray-400">
               No account needed for attendees.<br />
               Just scan a QR code and rate.
