@@ -2,6 +2,7 @@ import { createClient } from '@/src/lib/supabase/server'
 import { redirect } from 'next/navigation'
 import Link from 'next/link'
 import { CopyLinkButton } from '@/src/components/copy-link-button'
+import { PreviewLinkButton } from '@/src/components/preview-link-button'
 import { AuthNavbar } from '@/src/components/auth-navbar'
 import { Card } from '@/src/components/ui/card'
 
@@ -142,16 +143,7 @@ export default async function DashboardPage() {
                     <span className="text-xs font-medium border border-[#1D9E75]/20 text-[#1D9E75] rounded-lg px-3 py-1.5 group-hover:bg-[#E1F5EE]/50 transition-all">
                       View results
                     </span>
-                    <button
-                      type="button"
-                      onClick={(e) => {
-                        e.stopPropagation()
-                        window.open(`/e/${event.slug}`, '_blank', 'noopener,noreferrer')
-                      }}
-                      className="text-xs font-medium border border-gray-200 text-gray-500 rounded-lg px-3 py-1.5 hover:border-gray-300 hover:text-gray-700 transition-all cursor-pointer bg-transparent"
-                    >
-                      Preview
-                    </button>
+                    <PreviewLinkButton slug={event.slug} />
                     <CopyLinkButton slug={event.slug} />
                   </div>
                 </Card>

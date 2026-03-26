@@ -58,6 +58,13 @@ function LoginContent() {
             Free forever. No credit card required.
           </p>
 
+          <p className="mt-4 text-sm text-gray-500 text-center">
+            Don&apos;t have an account?{' '}
+            <Link href="/signup" className="text-[#1D9E75] font-medium hover:underline">
+              Sign up
+            </Link>
+          </p>
+
           <div className="mt-10 border-t border-gray-100 pt-6 text-center">
             <p className="text-xs text-gray-400">
               No account needed for attendees.<br />

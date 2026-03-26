@@ -46,20 +46,25 @@ export function QRCard({
   }, [])
 
   const downloadCard = useCallback(async () => {
-    const html2canvas = (await import('html2canvas')).default
-    const card = document.getElementById(`qr-card-${itemName}`)
-    if (!card) return
+    try {
+      const html2canvas = (await import('html2canvas')).default
+      const card = document.getElementById(`qr-card-${itemName}`)
+      if (!card) return
 
-    const canvas = await html2canvas(card, {
-      scale: 2,
-      backgroundColor: null,
-      useCORS: true,
-    })
+      const canvas = await html2canvas(card, {
+        scale: 2,
+        backgroundColor: 'transparent',
+        useCORS: true,
+        imageTimeout: 0,
+      })
 
-    const link = document.createElement('a')
-    link.download = `qr-card-${Date.now()}.png`
-    link.href = canvas.toDataURL('image/png')
-    link.click()
+      const link = document.createElement('a')
+      link.download = `qr-card-${Date.now()}.png`
+      link.href = canvas.toDataURL('image/png')
+      link.click()
+    } catch (error) {
+      console.error('Failed to download card:', error)
+    }
   }, [itemName])
 
   const cardId = `qr-card-${itemName}`

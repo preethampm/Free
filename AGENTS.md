@@ -26,6 +26,14 @@ npx tsc --noEmit     # Type checking (no npm script)
 
 **No test framework configured.** No Jest, Vitest, or Playwright. No test files exist.
 
+## Dev Server Workflow
+
+**The user always has a dev server running.** Do NOT start `npm run dev` unless explicitly asked or the user confirms it's not running. Before assuming a dev server is active, verify with:
+```bash
+netstat -ano | grep -E ":300[0-9]" | grep LISTENING
+```
+If a Turbopack crash occurs, the dev server may have died silently — check before reporting errors.
+
 ---
 
 ## Tech Stack
