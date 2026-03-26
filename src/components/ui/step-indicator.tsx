@@ -13,9 +13,9 @@ export function StepIndicator({
             className={`
               w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium transition-all
               ${step === current
-                ? 'bg-black text-white'
+                ? 'bg-[#1D9E75] text-[#E1F5EE]'
                 : step < current
-                  ? 'bg-gray-800 text-white'
+                  ? 'bg-[#0F6E56] text-[#E1F5EE]'
                   : 'border border-gray-300 text-gray-400'
               }
             `}
@@ -23,7 +23,7 @@ export function StepIndicator({
             {step}
           </div>
           {step < total && (
-            <div className={`w-6 h-px ${step < current ? 'bg-gray-800' : 'bg-gray-200'}`} />
+            <div className={`w-6 h-px ${step < current ? 'bg-[#0F6E56]' : 'bg-gray-200'}`} />
           )}
         </div>
       ))}

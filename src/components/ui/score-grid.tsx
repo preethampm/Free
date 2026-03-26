@@ -26,7 +26,7 @@ export function ScoreGrid({
             className={`
               w-11 h-11 rounded-lg text-base font-medium transition-all
               ${value === score
-                ? 'bg-black text-white'
+                ? 'bg-[#1D9E75] text-[#E1F5EE]'
                 : 'border border-gray-200 text-gray-600 hover:border-gray-400'
               }
             `}

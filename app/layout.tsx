@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Fest Voting",
-  description: "Rate startup stalls at the fest",
+  title: "votu",
+  description: "Rate what matters.",
 };
 
 export const viewport: Viewport = {

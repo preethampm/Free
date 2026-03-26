@@ -166,7 +166,7 @@ export default function EventPage() {
       <div className="min-h-screen px-4 py-6">
         <div className="max-w-md mx-auto">
           <div className="text-center mb-8">
-            <p className="text-xs text-gray-400 tracking-widest uppercase mb-2">feedback</p>
+            <p className="text-xs text-[#5DCAA5] tracking-widest uppercase mb-2">votu</p>
             <h1 className="text-2xl font-bold">{event.name}</h1>
           </div>
 
@@ -178,7 +178,7 @@ export default function EventPage() {
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 placeholder="Enter your name"
-                className="w-full border border-gray-300 rounded-lg px-4 py-3 text-base focus:outline-none focus:border-black"
+                className="w-full border border-gray-300 rounded-lg px-4 py-3 text-base focus:outline-none focus:border-[#1D9E75] focus:ring-1 focus:ring-[#1D9E75]"
                 required
               />
             </div>
@@ -189,7 +189,7 @@ export default function EventPage() {
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
                 placeholder="Enter your phone number"
-                className="w-full border border-gray-300 rounded-lg px-4 py-3 text-base focus:outline-none focus:border-black"
+                className="w-full border border-gray-300 rounded-lg px-4 py-3 text-base focus:outline-none focus:border-[#1D9E75] focus:ring-1 focus:ring-[#1D9E75]"
                 required
               />
             </div>
@@ -211,7 +211,7 @@ export default function EventPage() {
     <div className="min-h-screen px-4 py-6">
       <div className="max-w-lg mx-auto">
         <div className="text-center mb-6">
-          <p className="text-xs text-gray-400 tracking-widest uppercase mb-2">feedback</p>
+          <p className="text-xs text-[#5DCAA5] tracking-widest uppercase mb-2">votu</p>
           <h1 className="text-xl font-bold">{event.name}</h1>
           <p className="text-sm text-gray-400 mt-1">Welcome, {attendee.name}</p>
         </div>

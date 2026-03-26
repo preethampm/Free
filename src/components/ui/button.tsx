@@ -19,10 +19,10 @@ export function Button({
   const variants = {
     primary: disabled
       ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
-      : 'bg-black text-white hover:bg-gray-800',
+      : 'bg-[#1D9E75] text-[#E1F5EE] hover:bg-[#0F6E56]',
     secondary: disabled
       ? 'border border-gray-200 text-gray-300 cursor-not-allowed'
-      : 'border border-gray-300 text-black hover:bg-gray-50',
+      : 'border border-[#1D9E75] text-[#1D9E75] hover:bg-[#E1F5EE]',
     danger: disabled
       ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
       : 'bg-white text-red-600 border border-red-200 hover:bg-red-50',

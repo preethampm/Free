@@ -4,6 +4,7 @@ import { createClient } from '@/src/lib/supabase/client'
 import { useSearchParams } from 'next/navigation'
 import { Suspense } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 
 function LoginContent() {
   const searchParams = useSearchParams()
@@ -24,8 +25,8 @@ function LoginContent() {
       {/* Header */}
       <header className="border-b border-gray-100">
         <div className="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
-          <Link href="/" className="text-lg font-bold tracking-tight">
-            feedback
+          <Link href="/">
+            <Image src="/votu_logo.svg" alt="votu" width={190} height={60} priority style={{ height: 'auto' }} />
           </Link>
         </div>
       </header>
@@ -37,7 +38,7 @@ function LoginContent() {
             Sign up
           </h1>
           <p className="text-gray-400 mt-2 leading-relaxed">
-            Create an account to start building feedback events.
+            Create an account to start building votu events.
           </p>
 
           <button
@@ -53,21 +54,21 @@ function LoginContent() {
             Continue with Google
           </button>
 
-          <p className="mt-6 text-xs text-gray-300 text-center">
+          <p className="mt-6 text-xs text-gray-400 text-center">
             Free forever. No credit card required.
           </p>
 
           <div className="mt-10 border-t border-gray-100 pt-6">
             <p className="text-xs text-gray-400 text-center">
               Already have an account?{' '}
-              <Link href="/login" className="text-black hover:underline">
+              <Link href="/login" className="text-[#1D9E75] hover:underline">
                 Log in
               </Link>
             </p>
           </div>
 
           <div className="mt-8 text-center">
-            <p className="text-xs text-gray-300">
+            <p className="text-xs text-gray-400">
               No account needed for attendees.<br />
               Just scan a QR code and rate.
             </p>

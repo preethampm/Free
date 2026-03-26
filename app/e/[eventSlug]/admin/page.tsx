@@ -193,7 +193,7 @@ export default function AdminPage() {
           </button>
           <h1 className="text-xl font-bold">{event.name}</h1>
           <p className="text-sm text-gray-400 mt-1">
-            <span className="inline-block w-1.5 h-1.5 bg-black rounded-full mr-1 animate-pulse" />
+            <span className="inline-block w-1.5 h-1.5 bg-[#1D9E75] rounded-full mr-1 animate-pulse" />
             Live results
           </p>
         </div>
@@ -258,7 +258,7 @@ export default function AdminPage() {
                     <div className="flex items-center gap-3">
                       <span className={`
                         w-7 h-7 rounded-full flex items-center justify-center text-xs font-medium
-                        ${index < 3 ? 'bg-black text-white' : 'border border-gray-300 text-gray-500'}
+                        ${index < 3 ? 'bg-[#1D9E75] text-[#E1F5EE]' : 'border border-gray-300 text-gray-500'}
                       `}>
                         {index + 1}
                       </span>
