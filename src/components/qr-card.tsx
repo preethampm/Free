@@ -47,7 +47,7 @@ export function QRCard({
 
   const downloadCard = useCallback(async () => {
     try {
-      const html2canvas = (await import('html2canvas')).default
+      const html2canvas = (await import('html2canvas-pro')).default
       const card = document.getElementById(`qr-card-${itemName}`)
       if (!card) return
 
