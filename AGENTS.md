@@ -24,6 +24,8 @@ npx tsc --noEmit     # Type checking (no npm script)
 
 **Always run `npm run lint` after changes.** Run `npm run build` before finishing to catch type errors.
 
+**Always commit after completing changes.** Stage all relevant files and commit with a concise message describing what was done.
+
 **No test framework configured.** No Jest, Vitest, or Playwright. No test files exist.
 
 ## Dev Server Workflow
