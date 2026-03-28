@@ -15,7 +15,7 @@ export function Button({
   className?: string
   type?: 'button' | 'submit'
 }) {
-  const base = 'w-full py-3 rounded-lg text-base font-medium transition-all active:scale-[0.98]'
+  const base = 'w-full py-3.5 sm:py-3 min-h-[48px] sm:min-h-[44px] rounded-lg text-base font-medium transition-all active:scale-[0.98]'
   const variants = {
     primary: disabled
       ? 'bg-gray-200 text-gray-400 cursor-not-allowed'

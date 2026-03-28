@@ -210,13 +210,13 @@ export default function AdminPage() {
         </div>
 
         {/* Stats */}
-        <div className="grid grid-cols-2 gap-4 mb-8">
-          <div className="rounded-2xl p-5 text-center bg-[#E1F5EE]/60 border border-[#1D9E75]/10">
-            <p className="text-3xl font-bold text-[#04342C]">{completedCount}</p>
+        <div className="grid grid-cols-2 gap-3 sm:gap-4 mb-8">
+          <div className="rounded-2xl p-4 sm:p-5 text-center bg-[#E1F5EE]/60 border border-[#1D9E75]/10">
+            <p className="text-2xl sm:text-3xl font-bold text-[#04342C]">{completedCount}</p>
             <p className="text-xs text-[#0F6E56] font-medium mt-1">Completed voters</p>
           </div>
-          <div className="rounded-2xl p-5 text-center bg-white border border-[#1D9E75]/15">
-            <p className="text-3xl font-bold text-[#04342C]">{totalAttendees}</p>
+          <div className="rounded-2xl p-4 sm:p-5 text-center bg-white border border-[#1D9E75]/15">
+            <p className="text-2xl sm:text-3xl font-bold text-[#04342C]">{totalAttendees}</p>
             <p className="text-xs text-gray-500 font-medium mt-1">Total registered</p>
           </div>
         </div>
@@ -273,23 +273,23 @@ export default function AdminPage() {
               return (
                 <div
                   key={row.item_id}
-                  className={`rounded-2xl border p-5 transition-all ${
+                  className={`rounded-2xl border p-4 sm:p-5 transition-all ${
                     index < 3
                       ? 'bg-[#E1F5EE]/30 border-[#1D9E75]/20'
                       : 'bg-white border-gray-100'
                   }`}
                 >
                   <div className="flex items-center justify-between mb-2">
-                    <div className="flex items-center gap-3">
+                    <div className="flex items-center gap-2 sm:gap-3">
                       <span className={`
-                        w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold shadow-sm
+                        w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold shadow-sm flex-shrink-0
                         ${index < 3 ? rankStyles[index] : 'border-2 border-gray-200 text-gray-400'}
                       `}>
                         {index + 1}
                       </span>
-                      <span className="font-semibold text-sm text-[#04342C]">{row.item_name}</span>
+                      <span className="font-semibold text-sm text-[#04342C] truncate">{row.item_name}</span>
                     </div>
-                    <div className="text-right">
+                    <div className="text-right flex-shrink-0 ml-2">
                       <p className="text-xl font-bold text-[#04342C]">{row.average_score}</p>
                       <p className="text-xs text-gray-400">
                         {row.total_votes} vote{row.total_votes !== 1 ? 's' : ''}

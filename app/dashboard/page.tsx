@@ -49,7 +49,7 @@ export default async function DashboardPage() {
       <AuthNavbar />
       <div className="max-w-2xl mx-auto px-4 sm:px-6 py-8">
         {/* Header */}
-        <div className="flex items-start justify-between mb-8">
+        <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 mb-8">
           <div>
             <h1 className="text-2xl font-bold text-[#04342C]">Your events</h1>
             <p className="text-sm text-gray-500 mt-1">
@@ -61,12 +61,13 @@ export default async function DashboardPage() {
           </div>
           <Link
             href="/create"
-            className="inline-flex items-center gap-1.5 bg-[#1D9E75] text-white text-sm font-medium px-5 py-2.5 rounded-full hover:bg-[#0F6E56] transition-all active:scale-[0.98] shadow-sm"
+            className="inline-flex items-center justify-center gap-1.5 bg-[#1D9E75] text-white text-sm font-medium px-5 py-2.5 rounded-full hover:bg-[#0F6E56] transition-all active:scale-[0.98] shadow-sm min-h-[44px]"
           >
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
             </svg>
-            New event
+            <span className="sm:hidden">New</span>
+            <span className="hidden sm:inline">New event</span>
           </Link>
         </div>
 
@@ -139,12 +140,14 @@ export default async function DashboardPage() {
                     </span>
                   </div>
 
-                  <div className="flex gap-2">
+                  <div className="flex flex-wrap gap-2">
                     <span className="text-xs font-medium border border-[#1D9E75]/20 text-[#1D9E75] rounded-lg px-3 py-1.5 group-hover:bg-[#E1F5EE]/50 transition-all">
                       View results
                     </span>
-                    <PreviewLinkButton slug={event.slug} />
-                    <CopyLinkButton slug={event.slug} />
+                    <div className="flex gap-2">
+                      <PreviewLinkButton slug={event.slug} />
+                      <CopyLinkButton slug={event.slug} />
+                    </div>
                   </div>
                 </Card>
               </Link>

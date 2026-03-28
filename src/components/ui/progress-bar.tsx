@@ -17,9 +17,9 @@ export function ProgressBar({
           <span className="font-medium">{current}/{total}</span>
         </div>
       )}
-      <div className="w-full bg-gray-100 rounded-full h-2">
+      <div className="w-full bg-gray-100 rounded-full h-2.5 sm:h-2">
         <div
-          className="bg-[#1D9E75] h-2 rounded-full transition-all duration-500"
+          className="bg-[#1D9E75] h-2.5 sm:h-2 rounded-full transition-all duration-500"
           style={{ width: `${pct}%` }}
         />
       </div>

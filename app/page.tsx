@@ -7,18 +7,18 @@ export default function Home() {
     <div className="min-h-screen bg-white">
       {/* Header */}
       <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
-        <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
           <Logo size="lg" />
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 sm:gap-3">
             <Link
               href="/login"
-              className="text-sm font-medium text-gray-600 px-4 py-2.5 rounded-full hover:bg-gray-100 transition-all"
+              className="text-sm font-medium text-gray-600 px-3 sm:px-4 py-2 sm:py-2.5 rounded-full hover:bg-gray-100 transition-all"
             >
               Log in
             </Link>
             <Link
               href="/signup"
-              className="text-sm font-medium bg-[#1D9E75] text-white px-5 py-2.5 rounded-full hover:bg-[#0F6E56] transition-all active:scale-[0.98]"
+              className="text-sm font-medium bg-[#1D9E75] text-white px-4 sm:px-5 py-2 sm:py-2.5 rounded-full hover:bg-[#0F6E56] transition-all active:scale-[0.98]"
             >
               Sign up
             </Link>
@@ -29,33 +29,33 @@ export default function Home() {
       {/* Hero */}
       <section className="relative overflow-hidden">
         <div className="mesh-gradient absolute inset-0 pointer-events-none" />
-        <div className="max-w-6xl mx-auto px-6 pt-24 sm:pt-32 pb-20 relative">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 pt-16 sm:pt-32 pb-16 sm:pb-20 relative">
           <ScrollReveal>
             <div className="max-w-3xl">
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#E1F5EE] text-[#1D9E75] text-xs font-medium mb-6">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#1D9E75] animate-pulse" />
                 Live event feedback
               </div>
-              <h1 className="text-5xl sm:text-7xl font-bold tracking-tight leading-[1.05] text-gray-900">
+              <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.05] text-gray-900">
                 Rate what{' '}
                 <span className="text-[#1D9E75]">matters</span>
                 <br />
                 in real time.
               </h1>
-              <p className="text-gray-500 mt-6 text-lg sm:text-xl leading-relaxed max-w-xl">
+              <p className="text-gray-500 mt-5 sm:mt-6 text-base sm:text-xl leading-relaxed max-w-xl">
                 Create an event, place QR codes at each booth, let attendees
                 scan and rate on the spot. No app download required.
               </p>
-              <div className="mt-10 flex flex-col sm:flex-row gap-4">
+              <div className="mt-8 sm:mt-10 flex flex-col sm:flex-row gap-3 sm:gap-4">
                 <Link
                   href="/login"
-                  className="inline-flex items-center justify-center bg-[#1D9E75] text-white text-sm font-medium px-7 py-3.5 rounded-full hover:bg-[#0F6E56] transition-all active:scale-[0.98] shadow-lg shadow-[#1D9E75]/20"
+                  className="inline-flex items-center justify-center bg-[#1D9E75] text-white text-sm font-medium px-6 sm:px-7 py-3.5 rounded-full hover:bg-[#0F6E56] transition-all active:scale-[0.98] shadow-lg shadow-[#1D9E75]/20 min-h-[48px]"
                 >
                   Get started for free
                 </Link>
                 <Link
                   href="/login"
-                  className="inline-flex items-center justify-center text-sm font-medium px-7 py-3.5 rounded-full text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-all"
+                  className="inline-flex items-center justify-center text-sm font-medium px-6 sm:px-7 py-3.5 rounded-full text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-all min-h-[48px]"
                 >
                   See how it works
                   <svg className="ml-2 w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">

@@ -178,7 +178,7 @@ export default function EventPage() {
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 placeholder="Enter your name"
-                className="w-full border border-gray-300 rounded-lg px-4 py-3 text-base focus:outline-none focus:border-[#1D9E75] focus:ring-1 focus:ring-[#1D9E75]"
+                className="w-full border border-gray-300 rounded-lg px-4 py-3 text-base focus:outline-none focus:border-[#1D9E75] focus:ring-1 focus:ring-[#1D9E75] min-h-[48px]"
                 required
               />
             </div>
@@ -189,7 +189,7 @@ export default function EventPage() {
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
                 placeholder="Enter your phone number"
-                className="w-full border border-gray-300 rounded-lg px-4 py-3 text-base focus:outline-none focus:border-[#1D9E75] focus:ring-1 focus:ring-[#1D9E75]"
+                className="w-full border border-gray-300 rounded-lg px-4 py-3 text-base focus:outline-none focus:border-[#1D9E75] focus:ring-1 focus:ring-[#1D9E75] min-h-[48px]"
                 required
               />
             </div>
@@ -237,16 +237,16 @@ export default function EventPage() {
                 key={item.id}
                 href={`/e/${eventSlug}/${item.slug}`}
                 className={`
-                  block border rounded-lg p-4 transition-all
+                  block border rounded-xl p-4 transition-all min-h-[64px] flex items-center
                   ${isRated
                     ? 'border-gray-800 bg-gray-50'
                     : 'border-gray-200 hover:border-gray-400'
                   }
                 `}
               >
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="font-medium text-sm">
+                <div className="flex items-center justify-between w-full">
+                  <div className="flex-1 min-w-0">
+                    <p className="font-medium text-base sm:text-sm">
                       {item.name}
                       {isRated && <span className="ml-2 text-gray-400">&#10003;</span>}
                     </p>
@@ -254,7 +254,7 @@ export default function EventPage() {
                       <p className="text-xs text-gray-400 mt-0.5">{item.description}</p>
                     )}
                   </div>
-                  <span className="text-xs text-gray-400">
+                  <span className="text-sm text-gray-400 ml-2 flex-shrink-0">
                     {isRated ? 'Rated' : 'Rate \u2192'}
                   </span>
                 </div>

@@ -56,8 +56,8 @@ export default function CreatePage() {
   const step2Valid = items.every((i) => i.name.trim().length > 0)
   const step3Valid = criteria.every((c) => c.label.trim().length > 0)
 
-  const inputClass = 'w-full border border-gray-200 rounded-xl px-4 py-3 text-base focus:outline-none focus:border-[#1D9E75] focus:ring-1 focus:ring-[#1D9E75]/20 transition-all'
-  const inputClassSm = 'w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:border-[#1D9E75] focus:ring-1 focus:ring-[#1D9E75]/20 transition-all'
+  const inputClass = 'w-full border border-gray-200 rounded-xl px-4 py-3 text-base focus:outline-none focus:border-[#1D9E75] focus:ring-1 focus:ring-[#1D9E75]/20 transition-all min-h-[48px]'
+  const inputClassSm = 'w-full border border-gray-200 rounded-xl px-3 py-2.5 text-base sm:text-sm focus:outline-none focus:border-[#1D9E75] focus:ring-1 focus:ring-[#1D9E75]/20 transition-all min-h-[48px]'
 
   async function handleCreate() {
     setSubmitting(true)

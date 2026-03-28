@@ -30,18 +30,18 @@ function LoginContent() {
       </header>
 
       {/* Content */}
-      <main className="flex-1 flex items-center justify-center px-6">
+      <main className="flex-1 flex items-center justify-center px-4 sm:px-6">
         <div className="w-full max-w-sm">
-          <h1 className="text-3xl font-bold tracking-tight">
+          <h1 className="text-2xl sm:text-3xl font-bold tracking-tight">
             Log in
           </h1>
-          <p className="text-gray-400 mt-2 leading-relaxed">
+          <p className="text-gray-400 mt-2 text-sm sm:text-base leading-relaxed">
             Sign in to manage your votu events.
           </p>
 
           <button
             onClick={signInWithGoogle}
-            className="mt-8 w-full flex items-center justify-center gap-3 border border-gray-200 rounded-lg px-4 py-3.5 text-sm font-medium hover:bg-gray-50 hover:border-gray-300 transition-all"
+            className="mt-8 w-full flex items-center justify-center gap-3 border border-gray-200 rounded-lg px-4 py-3.5 text-sm font-medium hover:bg-gray-50 hover:border-gray-300 transition-all min-h-[48px]"
           >
             <svg width="18" height="18" viewBox="0 0 18 18">
               <path fill="#4285F4" d="M17.64 9.2c0-.637-.057-1.251-.164-1.84H9v3.481h4.844c-.209 1.125-.843 2.078-1.796 2.717v2.258h2.908c1.702-1.567 2.684-3.874 2.684-6.615z"/>

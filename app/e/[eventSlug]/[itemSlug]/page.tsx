@@ -262,8 +262,8 @@ export default function ItemRatingPage() {
             ))}
 
             {/* Feedback */}
-            <div className="border border-gray-200 rounded-lg p-4">
-              <p className="text-sm font-medium mb-2">
+            <div className="border border-gray-200 rounded-xl p-4">
+              <p className="text-base sm:text-sm font-medium mb-2">
                 Any feedback? <span className="text-gray-400 font-normal">(optional)</span>
               </p>
               <textarea
@@ -271,7 +271,7 @@ export default function ItemRatingPage() {
                 onChange={(e) => setFeedback(e.target.value)}
                 placeholder="Share your thoughts..."
                 rows={3}
-                className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm resize-none focus:outline-none focus:border-black"
+                className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-base sm:text-sm resize-none focus:outline-none focus:border-black min-h-[100px]"
               />
             </div>
 
