@@ -14,7 +14,7 @@ Votu is a live event feedback platform. Organizers create events with items and 
 ## Build / Lint / Test Commands
 
 ```bash
-npm run dev          # Start dev server (Turbopack)
+npm run dev          # Start dev server (webpack, Turbopack disabled due to crashes)
 npm run build        # Production build
 npm run start        # Start production server
 npm run lint         # ESLint (flat config, v9)
@@ -213,7 +213,7 @@ import { createClient } from '@/src/lib/supabase/server'
   ```ts
   export const viewport: Viewport = { width: 'device-width', initialScale: 1, maximumScale: 1 }
   ```
-- Turbopack is the default bundler in dev
+- Turbopack is disabled (causes crashes on HMR) — webpack is used instead
 - Cross-origin requests blocked by default in dev — add `allowedDevOrigins` to `next.config.ts` if needed
 
 ---
