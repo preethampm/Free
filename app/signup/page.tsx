@@ -5,7 +5,7 @@ import { createClient } from '@/src/lib/supabase/client'
 import { useSearchParams } from 'next/navigation'
 import { Suspense } from 'react'
 import Link from 'next/link'
-import Image from 'next/image'
+import { Logo } from '@/src/components/logo'
 
 type SignupMethod = 'google' | 'email' | 'otp'
 
@@ -29,9 +29,7 @@ function SignupContent() {
       {/* Header */}
       <header className="border-b border-gray-100">
         <div className="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
-          <Link href="/">
-            <Image src="/votu_logo.svg" alt="votu" width={220} height={70} priority style={{ height: 'auto' }} />
-          </Link>
+          <Logo size="lg" />
         </div>
       </header>
 

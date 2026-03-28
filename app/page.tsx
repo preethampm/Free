@@ -1,6 +1,6 @@
 import Link from 'next/link'
-import Image from 'next/image'
 import { ScrollReveal } from '@/src/components/scroll-reveal'
+import { Logo } from '@/src/components/logo'
 
 export default function Home() {
   return (
@@ -8,9 +8,7 @@ export default function Home() {
       {/* Header */}
       <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
         <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-          <Link href="/">
-            <Image src="/votu_logo.svg" alt="votu" width={220} height={70} priority style={{ height: 'auto' }} />
-          </Link>
+          <Logo size="lg" />
           <div className="flex items-center gap-3">
             <Link
               href="/login"
