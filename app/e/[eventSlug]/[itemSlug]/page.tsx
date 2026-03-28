@@ -11,6 +11,7 @@ interface Event {
   id: string
   name: string
   slug: string
+  criteria_mode: 'same' | 'different'
 }
 
 interface Item {
@@ -25,6 +26,7 @@ interface Criterion {
   label: string
   min_score: number
   max_score: number
+  source: 'event' | 'item'
 }
 
 interface Attendee {
@@ -91,7 +93,7 @@ export default function ItemRatingPage() {
       // Fetch event
       const { data: eventData } = await supabase
         .from('events')
-        .select('id, name, slug')
+        .select('id, name, slug, criteria_mode')
         .eq('slug', eventSlug)
         .single()
 
@@ -114,14 +116,32 @@ export default function ItemRatingPage() {
       if (!itemData) { router.push(`/e/${eventSlug}`); return }
       setItem(itemData)
 
-      // Fetch criteria
-      const { data: criteriaData } = await supabase
-        .from('event_criteria')
-        .select('id, label, min_score, max_score')
-        .eq('event_id', eventData.id)
-        .order('sort_order')
+      // Fetch criteria based on mode
+      let criteriaData: Criterion[] = []
+      
+      if (eventData.criteria_mode === 'same') {
+        const { data } = await supabase
+          .from('event_criteria')
+          .select('id, label, min_score, max_score')
+          .eq('event_id', eventData.id)
+          .order('sort_order')
+        
+        if (data) {
+          criteriaData = data.map(c => ({ ...c, source: 'event' as const }))
+        }
+      } else {
+        const { data } = await supabase
+          .from('item_criteria')
+          .select('id, label, min_score, max_score')
+          .eq('item_id', itemData.id)
+          .order('sort_order')
+        
+        if (data) {
+          criteriaData = data.map(c => ({ ...c, source: 'item' as const }))
+        }
+      }
 
-      if (criteriaData) {
+      if (criteriaData.length > 0) {
         setCriteria(criteriaData)
         const initial: Record<string, number> = {}
         criteriaData.forEach((c) => { initial[c.id] = 0 })
@@ -131,14 +151,17 @@ export default function ItemRatingPage() {
       // Check existing ratings
       const { data: existingRatings } = await supabase
         .from('event_ratings')
-        .select('criteria_id, score')
+        .select('criteria_id, item_criteria_id, score')
         .eq('attendee_id', attendeeData.id)
         .eq('item_id', itemData.id)
 
       if (existingRatings && existingRatings.length > 0) {
         setAlreadyRated(true)
         const existing: Record<string, number> = {}
-        existingRatings.forEach((r) => { existing[r.criteria_id] = r.score })
+        existingRatings.forEach((r) => {
+          const keyId = r.criteria_id || r.item_criteria_id
+          if (keyId) existing[keyId] = r.score
+        })
         setScores(existing)
       }
 
@@ -156,18 +179,27 @@ export default function ItemRatingPage() {
 
     setSubmitting(true)
 
-    // Insert ratings
+    // Insert ratings based on criteria source
     const ratingRows = criteria.map((c) => ({
       attendee_id: attendee.id,
       item_id: item.id,
-      criteria_id: c.id,
+      criteria_id: c.source === 'event' ? c.id : null,
+      item_criteria_id: c.source === 'item' ? c.id : null,
       score: scores[c.id],
       feedback: criteria.indexOf(c) === 0 && feedback.trim() ? feedback.trim() : null,
     }))
 
+    // For upsert, we need a unique constraint. Since we added nullable criteria_id,
+    // we need to handle this differently - delete existing and insert new
+    await supabase
+      .from('event_ratings')
+      .delete()
+      .eq('attendee_id', attendee.id)
+      .eq('item_id', item.id)
+
     const { error } = await supabase
       .from('event_ratings')
-      .upsert(ratingRows, { onConflict: 'attendee_id,item_id,criteria_id' })
+      .insert(ratingRows)
 
     if (error) {
       console.error('Rating error:', error)

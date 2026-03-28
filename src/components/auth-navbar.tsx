@@ -34,6 +34,12 @@ export function AuthNavbar() {
           >
             Create
           </Link>
+          <Link
+            href="/settings"
+            className="text-sm font-medium text-gray-600 hover:text-[#1D9E75] px-3 py-1.5 rounded-lg hover:bg-[#E1F5EE]/50 transition-all"
+          >
+            Settings
+          </Link>
           <button
             onClick={handleSignOut}
             className="text-sm font-medium text-gray-400 hover:text-red-500 px-3 py-1.5 rounded-lg hover:bg-red-50 transition-all ml-1"
