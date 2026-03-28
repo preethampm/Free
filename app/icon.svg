@@ -1,0 +1,24 @@
+<svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+
+<!-- Background -->
+<rect width="64" height="64" rx="14" fill="#1D9E75"/>
+
+<!-- top-left corner square -->
+<rect x="10" y="10" width="18" height="18" rx="3.5" fill="#E1F5EE" opacity="0.25"/>
+<rect x="13" y="13" width="12" height="12" rx="2" fill="#1D9E75"/>
+<rect x="15.5" y="15.5" width="7" height="7" rx="1.5" fill="#E1F5EE"/>
+
+<!-- top-right corner square -->
+<rect x="36" y="10" width="18" height="18" rx="3.5" fill="#E1F5EE" opacity="0.25"/>
+<rect x="39" y="13" width="12" height="12" rx="2" fill="#1D9E75"/>
+<rect x="41.5" y="15.5" width="7" height="7" rx="1.5" fill="#E1F5EE"/>
+
+<!-- bottom-left corner square -->
+<rect x="10" y="36" width="18" height="18" rx="3.5" fill="#E1F5EE" opacity="0.25"/>
+<rect x="13" y="39" width="12" height="12" rx="2" fill="#1D9E75"/>
+<rect x="15.5" y="41.5" width="7" height="7" rx="1.5" fill="#E1F5EE"/>
+
+<!-- checkmark bottom-right -->
+<path d="M38 46 L44 53 L56 38" fill="none" stroke="#E1F5EE" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+
+</svg>
