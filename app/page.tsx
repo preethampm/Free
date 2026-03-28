@@ -8,7 +8,7 @@ export default function Home() {
       {/* Header */}
       <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
         <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-          <Logo size="sm" />
+          <Logo size="lg" />
           <div className="flex items-center gap-3">
             <Link
               href="/login"

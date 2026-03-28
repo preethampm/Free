@@ -18,7 +18,7 @@ export function AuthNavbar() {
     <header className="border-b border-[#1D9E75]/15 bg-white/80 backdrop-blur-sm sticky top-0 z-50">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
         <Link href="/dashboard" className="flex items-center gap-2">
-          <Logo size="sm" />
+          <Logo size="lg" />
         </Link>
 
         <nav className="flex items-center gap-1">

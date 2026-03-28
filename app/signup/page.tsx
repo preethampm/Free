@@ -29,7 +29,7 @@ function SignupContent() {
       {/* Header */}
       <header className="border-b border-gray-100">
         <div className="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
-          <Logo size="md" />
+          <Logo size="lg" />
         </div>
       </header>
 
