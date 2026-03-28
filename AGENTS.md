@@ -14,7 +14,7 @@ Votu is a live event feedback platform. Organizers create events with items and 
 ## Build / Lint / Test Commands
 
 ```bash
-npm run dev          # Start dev server (webpack, Turbopack disabled due to crashes)
+npm run dev          # Start dev server (webpack)
 npm run build        # Production build
 npm run start        # Start production server
 npm run lint         # ESLint (flat config, v9)
